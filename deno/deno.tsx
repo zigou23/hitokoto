@@ -27,14 +27,15 @@ async function handleRequest(request: Request) {
     // 判断非法请求用户, 很简陋
     const hostdomain = request.headers.get("host");
     const ua = request.headers.get("user-agent");
-    if (hostdomain != 'hitokoto.deno.dev' || !ua.match(/Mozilla\/5.0\b/i) ) {
-      return new Response(JSON.stringify({'status':400,'msg':'illegal request'}), status_404);
+    if (path=="/" || hostdomain != 'hitokoto.deno.dev' || !ua.match(/Mozilla\/5.0\b/i) ) {
+      return Response.redirect('https://github.com/zigou23/hitokoto/tree/main/deno', 301); //重定向
     }
     /**
      * Hitokoto
      * /
      */
-    if (path.startsWith('/')) {
+    
+    if (path.startsWith('/js') || path.startsWith('/text')) {
       const url = urlObj.searchParams.get('url'); //获取?url
       let HitokotoFetchURL="";
       // 判断?url=是否有数值
@@ -76,8 +77,7 @@ async function handleRequest(request: Request) {
           "from2":from2 || '',
           "lenth":Hitokoto.length,
           "id":random+1,
-          "rows":Hitokotos.length,
-          "msg":"页面正在写了(咕咕咕"
+          "rows":Hitokotos.length
         }), headers_init)
         }
         return new Response("document.write('"+Hitokoto+"')", headers_init)
@@ -92,8 +92,7 @@ async function handleRequest(request: Request) {
         "from2":from2 || '',
         "lenth":Hitokoto.length,
         "id":random+1,
-        "rows":Hitokotos.length,
-        "msg":"页面正在写了(咕咕咕"
+        "rows":Hitokotos.length
       }), headers_init)
     }
   }catch(err) {
