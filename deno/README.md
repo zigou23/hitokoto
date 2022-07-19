@@ -13,6 +13,8 @@ https://hitokoto.deno.dev
 
 ### url请求内容格式
 
+> 没有`url`值时 默认请求参数 https://cdn.jsdelivr.net/gh/sy-records/hitokoto@master/hitokoto.txt
+
 一行一个一言，如果有from[^2]来源，请在一言后面加上`|`分隔线
 
 > 参考示例
@@ -22,6 +24,7 @@ https://hitokoto.deno.dev
 > 不要跟朋友合伙做生意,跟朋友做生意有风险|from1|from2
 > 能量的意义不在于正负，而在于让你前行|from1
 > ```
+
 
 
 
